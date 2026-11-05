@@ -148,10 +148,24 @@
   @apply absolute top-1/2 left-0 -translate-y-1/2;
 }
 
-
 /* ========== Components ========== */
 @layer components {
   .btn {
     @apply flex-center cursor-pointer;
+  }
+
+
+  /* ----- Footer ----- */
+  
+  .footer-item {
+    @apply select-none [&>p]:inline-block before:size-1 before:inline-block before:ml-1.5 lg:before:ml-2 before:bg-cbcbcb before:rounded-full;
+  }
+
+  .footer-list {
+    @apply space-y-4 text-cbcbcb *:text-xs xl:*:text-sm;
+  }
+
+  footer {
+    @apply after:h-px after:absolute after:left-0 after:right-0 after:bottom-31.75 lg:after:bottom-11.5 after:bg-cbcbcb;
   }
 }

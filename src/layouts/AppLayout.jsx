@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration, useMatches } from "react-router";
 
 import Topbar from "@/components/ui/Topbar";
+import Footer from "@/components/common/Footer/Footer";
 
 function AppLayout() {
   const matches = useMatches();
@@ -21,7 +22,7 @@ function AppLayout() {
           <Outlet />
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
