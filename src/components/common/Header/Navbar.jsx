@@ -1,0 +1,47 @@
+import { Link, NavLink } from "react-router";
+
+import { Award, Flash, Star1 } from "iconsax-reactjs";
+
+import menus from "@/constants/navmenu";
+
+function Navbar() {
+  const categories = menus.find((menu) => menu.submenus);
+
+  return (
+    <nav className="hidden relative lg:flex-between rounded-2xl bg-f9f9f9 text-neutral-black px-10 mt-11.5 font-IRANSansX-Bold text-sm xl:text-base">
+      <ul className="flex-ic">
+        {categories.submenus.map((submenu) => (
+          <li
+            key={submenu.id}
+            className="pl-6 py-5 xl:pl-10 hover:text-primary transition-colors"
+          >
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-primary" : "")}
+              to={`/category/${submenu.href}`}
+              preventScrollReset
+            >
+              {submenu.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex-ic gap-6 xl:gap-10 *:flex-ic *:gap-1 py-5">
+        <Link to="/products?sort=newest">
+          <Star1 className="size-5 xl:size-6" color="#FA541C" />
+          <span>جدید ترین محصولات</span>
+        </Link>
+        <Link to="/products/?hasDiscount=true">
+          <Flash className="size-5 xl:size-6" color="#FA541C" />
+          <span>تخفیفات ویژه</span>
+        </Link>
+        <Link to="/products/?sort=bestSelling">
+          <Award className="size-5 xl:size-6" color="#FA541C" />
+          <span>پرفروش ترین ها</span>
+        </Link>
+      </div>
+    </nav>
+  );
+}
+
+export default Navbar;

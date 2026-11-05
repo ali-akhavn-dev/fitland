@@ -2,6 +2,7 @@ import { Outlet, ScrollRestoration, useMatches } from "react-router";
 
 import Topbar from "@/components/ui/Topbar";
 import Footer from "@/components/common/Footer/Footer";
+import Header from "@/components/common/Header/Header";
 
 function AppLayout() {
   const matches = useMatches();
@@ -16,7 +17,7 @@ function AppLayout() {
         </Topbar>
       )}
       <div className="flex flex-col h-screen justify-between">
-        {/* <Header /> */}
+        <Header />
 
         <main>
           <Outlet />
