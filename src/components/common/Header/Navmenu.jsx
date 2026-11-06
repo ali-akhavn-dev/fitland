@@ -10,7 +10,6 @@ import {
   User,
 } from "iconsax-reactjs";
 
-import Logo from "../../../../public/svg/app-logo.svg";
 import NavmenuItem from "./NavmenuItem";
 import menus from "@/constants/navmenu";
 
@@ -23,7 +22,7 @@ function Navmenu({ onToggle, isOpen }) {
         <header className="flex flex-col gap-10 border-b border-cbcbcb pb-7">
           <div className="w-full flex-between">
             <Link to="/">
-              <img className="w-28" src={Logo} alt="logo" />
+              <img className="w-28" src="./svg/app-logo.svg" alt="logo" />
               <span className="text-[10px] text-868686 mt-2 select-none">
                 فروشگاه لوازم ورزشی فیت‌لند
               </span>
