@@ -3,9 +3,8 @@ import { ArrowCircleLeft2 } from "iconsax-reactjs";
 import Banner from "@/components/templates/Home/Banner";
 import HeroSection from "@/components/templates/Home/HeroSection";
 import ProductsShowCase from "@/components/templates/Home/ProductsShowCase";
-import NavButton from "@/components/ui/Button/NavButton";
 import ProductSlider from "@/components/templates/Home/ProductSlider";
-import { Link } from "react-router";
+import Button from "@/components/ui/Button/Button";
 
 function HomePage() {
   return (
@@ -24,12 +23,12 @@ function HomePage() {
             <span className="block font-IRANSansX-Regular">برای حال خوب</span>
             لوازم ایروبیک و تناسب اندام بگیر
           </p>
-          <NavButton
-            to="/category/sports-equipment"
-            className="hidden lg:flex lg:w-59 bg-secondary"
+          <Button
+            text="مشاهده همه محصولات"
+            className="hidden lg:flex w-59! h-12 font-IRANSansX-Bold! text-white bg-secondary"
           >
             <ArrowCircleLeft2 className="size-5 lg:size-6" />
-          </NavButton>
+          </Button>
         </div>
       </Banner>
       <ProductSlider
@@ -49,9 +48,12 @@ function HomePage() {
             </span>
             دوچرخه، اسکیت و اسکوتر بگیر
           </p>
-          <NavButton className="hidden lg:flex lg:w-59 bg-secondary">
+          <Button
+            text="مشاهده همه محصولات"
+            className="hidden lg:flex w-59! h-12 font-IRANSansX-Bold! text-white bg-secondary"
+          >
             <ArrowCircleLeft2 className="size-5 lg:size-6" />
-          </NavButton>
+          </Button>
         </div>
       </Banner>
       <ProductSlider
@@ -65,9 +67,7 @@ function HomePage() {
         title="پرفروش ترین محصولات"
         href="/products/?sort=bestSelling"
       />
-      <Banner bannerName="camping">
-        <Link to="/products" className="block size-full" />
-      </Banner>
+      <Banner to="/category/sports-equipment" bannerName="camping" />
     </>
   );
 }
