@@ -5,6 +5,7 @@ import HeroSection from "@/components/templates/Home/HeroSection";
 import ProductsShowCase from "@/components/templates/Home/ProductsShowCase";
 import ProductSlider from "@/components/templates/Home/ProductSlider";
 import Button from "@/components/ui/Button/Button";
+import BenefitsSection from "@/components/templates/Home/BenefitsSection";
 
 function HomePage() {
   return (
@@ -68,6 +69,7 @@ function HomePage() {
         href="/products/?sort=bestSelling"
       />
       <Banner to="/category/sports-equipment" bannerName="camping" />
+      <BenefitsSection />
     </>
   );
 }
