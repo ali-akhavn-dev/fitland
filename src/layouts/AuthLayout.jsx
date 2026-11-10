@@ -62,7 +62,7 @@ function AuthLayout() {
           className="absolute w-full h-full object-cover -z-10"
         />
         <div>
-          <img src="./svg/app-logo.svg" alt="logo" />
+          <img src="./../public/svg/app-logo.svg" alt="logo" />
         </div>
         <Link
           to="/"
