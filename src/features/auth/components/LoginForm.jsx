@@ -17,10 +17,17 @@ function LoginForm() {
     resendOtp,
     resetLogin,
     changeIdentifier,
+    getFormattedCounter,
+    isExpired,
     resetIdentifier,
     error,
     isLoading,
   } = useOutletContext();
+
+  const handleResendOTP = (e) => {
+    e.preventDefault();
+    resendOtp();
+  };
 
   return (
     <div className="auth-form-wrapper">
@@ -50,6 +57,28 @@ function LoginForm() {
             <p className="max-[380px]:text-xs text-sm text-error-3 mt-2">
               لطفا {getErrorType(identifier)} را به صورت صحیح وارد نمایید
             </p>
+          )}
+
+          {isSentOtp && (
+            <div className="flex-between font-IRANSansX-Medium text-sm mt-8">
+              <span className={isExpired ? "text-cbcbcb" : "text-606060"}>
+                کد برای شما ارسال شد
+              </span>
+              <div className="flex-ic gap-2">
+                <button
+                  className={isExpired ? "text-primary" : "text-cbcbcb"}
+                  disabled={!isExpired}
+                  onClick={handleResendOTP}
+                >
+                  ارسال دوباره
+                </button>
+                <span
+                  className={`inline-block w-9 ${isExpired ? "text-cbcbcb" : "text-606060"}`}
+                >
+                  {getFormattedCounter()}
+                </span>
+              </div>
+            </div>
           )}
         </div>
 

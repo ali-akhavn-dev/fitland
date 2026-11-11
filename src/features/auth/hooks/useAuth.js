@@ -8,6 +8,7 @@ import validateIdentifier from "../validator";
 import { validateSchema } from "@/utils/helper";
 import { OTP_LENGTH } from "@/constants/auth";
 import { otpSchema } from "../validator/schema";
+import useCountdown from "./useCountdown";
 
 function useAuth() {
   const [isSentOtp, setIsSentOtp] = useState(false);
@@ -19,6 +20,8 @@ function useAuth() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const { restartCountdown, resetCountdown, getFormattedCounter, isExpired } =
+    useCountdown(120);
 
   useEffect(() => {
     const isLoginPath = location.pathname.includes("login");
@@ -42,6 +45,7 @@ function useAuth() {
       });
       console.log(data);
       setIsSentOtp(true);
+      restartCountdown();
       setIdentifierType(data.type);
       navigate("/auth/login");
     } catch (err) {
@@ -55,19 +59,21 @@ function useAuth() {
     let finalOTP = otp.join("").trim();
     const isOtpValid = validateSchema(otpSchema, finalOTP, true);
     if (!isOtpValid) return;
+    if (isExpired) {
+      toast.error("برای شماره موبایل یا ایمیل خود کد تأیید دریافت کنید");
+      return;
+    }
 
-    console.log({ identifier, otp: finalOTP });
     setIsLoading(true);
     try {
       const res = await authService.verifyOTP({ identifier, otp: finalOTP });
+      resetCountdown();
       toast.success(res.message);
-      console.log(res);
       if (res.data.isNewUser) {
         return navigate("/auth/register", { replace: true });
       }
       navigate("/", { replace: true });
     } catch (err) {
-      console.log(err.data);
       toast.error(err?.data.message || "مشکلی پیش آمده، دوباره تلاش کنید");
     } finally {
       setIsLoading(false);
@@ -78,6 +84,7 @@ function useAuth() {
     try {
       await authService.sendOTP({ identifier: identifier.trim() });
       setIsSentOtp(true);
+      restartCountdown();
     } catch (err) {
       toast.error(err?.data.message || "مشکلی پیش آمده، دوباره تلاش کنید");
     }
@@ -97,10 +104,12 @@ function useAuth() {
     setIsSentOtp(false);
     setOtp(Array(OTP_LENGTH).fill(""));
     setError(null);
+    resetCountdown();
   };
 
   const resetRegister = () => {
     setOtp(Array(OTP_LENGTH).fill(""));
+    resetCountdown();
   };
 
   const resetIdentifier = () => {
@@ -119,7 +128,11 @@ function useAuth() {
     resetRegister,
     changeIdentifier,
     setOtp,
+    getFormattedCounter,
+    restartCountdown,
+    resetCountdown,
     resetIdentifier,
+    isExpired,
     error,
   };
 }
