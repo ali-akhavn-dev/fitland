@@ -1,4 +1,10 @@
-import { Link, Outlet, useMatches } from "react-router";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useMatches,
+  useNavigate,
+} from "react-router";
 
 import { ArrowRight2, Home } from "iconsax-reactjs";
 
@@ -8,17 +14,27 @@ import defaultCover from "@/assets/images/auth/login.jpg";
 import otpCover from "@/assets/images/auth/otp.jpg";
 import registerCover from "@/assets/images/auth/register.jpg";
 import Close from "@/components/ui/Icon/Close";
+import useAuth from "@/features/auth/hooks/useAuth";
 
 function AuthLayout() {
   const matches = useMatches();
   const match = matches.find((match) => match.handle?.stage);
   const stage = match?.handle.stage;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const auth = useAuth();
+
+  const goBack = () => {
+    const isRegisterPath = location.pathname.includes("register");
+    isRegisterPath ? auth.resetRegister() : auth.resetLogin();
+    navigate(-1, { replace: true });
+  };
 
   return (
     <div className="lg:grid grid-cols-2 h-screen">
       <main className="w-full h-full flex-ic flex-col lg:flex-center relative overflow-hidden px-4 pt-5">
         <div className="lg:hidden w-full flex-between text-[#717171]">
-          <button>
+          <button onClick={goBack}>
             <ArrowRight2 />
           </button>
 
@@ -39,7 +55,7 @@ function AuthLayout() {
           </span>
         </Link>
 
-        <Outlet />
+        <Outlet context={auth} />
 
         <img
           src={Abstract1}

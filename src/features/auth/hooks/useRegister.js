@@ -1,0 +1,77 @@
+import { useState } from "react";
+import { useNavigate, useOutletContext } from "react-router";
+
+import { toast } from "sonner";
+
+import * as authService from "../services/auth.service";
+import { replaceClass, validateSchema } from "@/utils/helper";
+import { getValidationIssues } from "../utils";
+import { registerSchema } from "../validator/schema";
+
+function useRegister() {
+  const [register, setRegister] = useState({
+    fullName: "",
+    mobile: "",
+    email: "",
+    acceptTerms: false,
+  });
+
+  const { identifierType, identifier } = useOutletContext();
+
+  const navigate = useNavigate();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const isRegistrationValid = validateSchema(registerSchema, register, true);
+
+    if (!isRegistrationValid) return;
+    if (identifierType === "mobile" && register.mobile !== identifier) {
+      toast.error(
+        "شماره موبایل با شماره‌ای که کد تأیید برای آن ارسال شده مطابقت ندارد",
+      );
+      return;
+    }
+
+    try {
+      const res = await authService.register(register);
+      console.log(res);
+      toast.success(res.message);
+      navigate("/");
+    } catch (err) {
+      console.log(err.data);
+      toast.error(err.data.message);
+    }
+  };
+
+  const handleBlur = (input) => {
+    const zodIssues = getValidationIssues(registerSchema, register);
+    const hasError = zodIssues.includes(input.name);
+
+    if (input.value && hasError) {
+      replaceClass(input, "input-success", "input-error");
+    } else if (input.value && !hasError) {
+      replaceClass(input, "input-error", "input-success");
+    } else {
+      input.classList.remove("input-error", "input-success");
+    }
+  };
+
+  const changeRegister = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    if (name === "acceptTerms") {
+      setRegister((prev) => ({ ...prev, acceptTerms: !prev.acceptTerms }));
+    } else {
+      setRegister((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  return {
+    register,
+    handleRegister,
+    changeRegister,
+    handleBlur,
+  };
+}
+
+export default useRegister;

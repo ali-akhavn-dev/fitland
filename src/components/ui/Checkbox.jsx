@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Tick from "./Icon/Tick";
 
-function Checkbox({ checked = false, onChange, size = 16, id }) {
+function Checkbox({ name, checked = false, onChange, size = 16, id }) {
   const [isChecked, setIsChecked] = useState(checked);
 
   const handleChange = (e) => {
@@ -18,6 +18,7 @@ function Checkbox({ checked = false, onChange, size = 16, id }) {
       <input
         id={id}
         hidden
+        name={name}
         type="checkbox"
         checked={isChecked}
         onChange={handleChange}

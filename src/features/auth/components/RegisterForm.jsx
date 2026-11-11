@@ -1,10 +1,15 @@
-import { Link } from "react-router";
+import { Link, useOutletContext } from "react-router";
 
 import RegisterInput from "./RegisterInput";
-import Checkbox from "@/components/ui/Checkbox";
+import useRegister from "../hooks/useRegister";
 import BackButton from "./BackButton";
+import Checkbox from "@/components/ui/Checkbox";
 
 function RegisterForm() {
+  const { register, handleRegister, changeRegister, handleBlur } =
+    useRegister();
+  const { resetRegister } = useOutletContext();
+
   return (
     <div className="auth-form-wrapper">
       <form action="" className="space-y-8 select-none">
@@ -13,41 +18,54 @@ function RegisterForm() {
         <div className="text-sm space-y-8">
           <RegisterInput
             name="fullName"
+            value={register.fullName}
+            onChange={changeRegister}
             label="نام و نام خانوادگی *"
             placeholer="نام خود را به فارسی وارد کنید"
+            handleBlur={handleBlur}
           />
 
           <RegisterInput
             name="mobile"
+            value={register.mobile}
+            onChange={changeRegister}
             label="شماره تلفن همراه *"
             placeholer="09*********"
+            handleBlur={handleBlur}
             rtl
           />
 
           <RegisterInput
             name="email"
+            value={register.email}
+            onChange={changeRegister}
             label="ایمیل (اختیاری)"
             type="email"
             placeholer="Example@gmail.coms"
+            handleBlur={handleBlur}
           />
         </div>
 
-        <button type="button" className="submit-btn">
+        <button onClick={handleRegister} type="button" className="submit-btn">
           تایید
         </button>
 
         <div className="flex-ic gap-2 text-sm font-IRANSansX-Medium">
-          <Checkbox name="acceptTerms" />
+          <Checkbox
+            name="acceptTerms"
+            checked={register.acceptTerms}
+            onChange={changeRegister}
+          />
           <span>
             <Link to="/" className="text-secondary-300">
               قوانین و مقررات
-            </Link>
+            </Link>{" "}
             را خوانده و قبول دارم.
           </span>
         </div>
       </form>
 
-      <BackButton to="/auth/login" />
+      <BackButton to="/auth/login" onClick={resetRegister} />
     </div>
   );
 }
