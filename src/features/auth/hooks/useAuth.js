@@ -25,8 +25,7 @@ function useAuth() {
 
   useEffect(() => {
     const isLoginPath = location.pathname.includes("login");
-    const isRegisterPath = location.pathname.includes("register");
-    if ((isLoginPath || isRegisterPath) && !isSentOtp) {
+    if (isLoginPath && !isSentOtp) {
       navigate("/auth", { replace: true });
     }
   }, []);
@@ -107,11 +106,6 @@ function useAuth() {
     resetCountdown();
   };
 
-  const resetRegister = () => {
-    setOtp(Array(OTP_LENGTH).fill(""));
-    resetCountdown();
-  };
-
   const resetIdentifier = () => {
     setIdentifier("");
   };
@@ -125,7 +119,6 @@ function useAuth() {
     handleLogin,
     resendOtp,
     resetLogin,
-    resetRegister,
     changeIdentifier,
     setOtp,
     getFormattedCounter,

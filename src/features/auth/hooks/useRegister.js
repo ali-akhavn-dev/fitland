@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router";
 
 import { toast } from "sonner";
 
@@ -7,6 +7,7 @@ import * as authService from "../services/auth.service";
 import { replaceClass, validateSchema } from "@/utils/helper";
 import { getValidationIssues } from "../utils";
 import { registerSchema } from "../validator/schema";
+import { OTP_LENGTH } from "@/constants/auth";
 
 function useRegister() {
   const [register, setRegister] = useState({
@@ -16,9 +17,18 @@ function useRegister() {
     acceptTerms: false,
   });
 
-  const { identifierType, identifier } = useOutletContext();
+  const { identifierType, identifier, setOtp, resetCountdown, isSentOtp } =
+    useOutletContext();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const isRegisterPath = location.pathname.includes("register");
+    if (isRegisterPath && !isSentOtp) {
+      navigate("/auth", { replace: true });
+    }
+  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -34,11 +44,10 @@ function useRegister() {
 
     try {
       const res = await authService.register(register);
-      console.log(res);
+
       toast.success(res.message);
       navigate("/");
     } catch (err) {
-      console.log(err.data);
       toast.error(err.data.message);
     }
   };
@@ -66,11 +75,17 @@ function useRegister() {
     }
   };
 
+  const resetRegister = () => {
+    setOtp(Array(OTP_LENGTH).fill(""));
+    resetCountdown();
+  };
+
   return {
     register,
     handleRegister,
     changeRegister,
     handleBlur,
+    resetRegister,
   };
 }
 

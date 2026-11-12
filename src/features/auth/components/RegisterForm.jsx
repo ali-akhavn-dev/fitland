@@ -1,4 +1,4 @@
-import { Link, useOutletContext } from "react-router";
+import { Link } from "react-router";
 
 import RegisterInput from "./RegisterInput";
 import useRegister from "../hooks/useRegister";
@@ -6,9 +6,13 @@ import BackButton from "./BackButton";
 import Checkbox from "@/components/ui/Checkbox";
 
 function RegisterForm() {
-  const { register, handleRegister, changeRegister, handleBlur } =
-    useRegister();
-  const { resetRegister } = useOutletContext();
+  const {
+    register,
+    handleRegister,
+    changeRegister,
+    handleBlur,
+    resetRegister,
+  } = useRegister();
 
   return (
     <div className="auth-form-wrapper">
