@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Link } from "react-router";
 
 import {
@@ -12,8 +13,11 @@ import {
 
 import NavmenuItem from "./NavmenuItem";
 import menus from "@/constants/navmenu";
+import { AuthContext } from "@/context/Auth";
 
 function Navmenu({ onToggle, isOpen }) {
+  const { user, isLoading: authIsLoading } = useContext(AuthContext);
+
   return (
     <div className="lg:hidden text-neutral-black">
       <div
@@ -32,11 +36,19 @@ function Navmenu({ onToggle, isOpen }) {
             </button>
           </div>
 
-          <Link to="/auth" className="flex-between">
+          <Link to={user ? "/dashboard" : "/auth"} className="flex-between">
             <div className="flex-ic gap-3">
               <span className="bg-ededed flex-center size-12 rounded-full">
                 <User />
               </span>
+              {!authIsLoading && user ? (
+                <div className="h-12 flex flex-col justify-between">
+                  <span className="text-sm line-clamp-1">{user.fullName}</span>
+                  <span className="text-xs">{user.mobile}</span>
+                </div>
+              ) : (
+                <span>ورود | ثبت‌نام</span>
+              )}
             </div>
 
             <ArrowLeft2 size={20} />
