@@ -3,6 +3,7 @@ import { Outlet, ScrollRestoration, useMatches } from "react-router";
 import Topbar from "@/components/ui/Topbar";
 import Footer from "@/components/common/Footer/Footer";
 import Header from "@/components/common/Header/Header";
+import { AuthProvider } from "@/context/Auth";
 
 function AppLayout() {
   const matches = useMatches();
@@ -10,21 +11,23 @@ function AppLayout() {
 
   return (
     <>
-      <ScrollRestoration />
-      {hasTopbar && (
-        <Topbar>
-          <p>با عضویت در فیت لند اولین ارسال را مهمون ما باش :)</p>
-        </Topbar>
-      )}
-      <div className="flex flex-col h-screen justify-between">
-        <Header />
+      <AuthProvider>
+        <ScrollRestoration />
+        {hasTopbar && (
+          <Topbar>
+            <p>با عضویت در فیت لند اولین ارسال را مهمون ما باش :)</p>
+          </Topbar>
+        )}
+        <div className="flex flex-col h-screen justify-between">
+          <Header />
 
-        <main>
-          <Outlet />
-        </main>
+          <main>
+            <Outlet />
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </AuthProvider>
     </>
   );
 }
