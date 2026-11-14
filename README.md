@@ -2,7 +2,7 @@
 
 # FitLand
 
-### sports equipment e-commerce
+### Sports equipment e-commerce
 
 <p>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=222222" alt="JavaScript" />
@@ -19,9 +19,8 @@
 <p><strong>GitHub repository</strong></p>
 
 <p>
-  <a href="https://github.com/ali-akhavn-dev/fitland/pulls"><img src="https://img.shields.io/github/issues-pr/ali-akhavn-dev/fitland?style=flat-square&logo=github&label=Pull%20Requests" alt="Open pull requests" /></a>
-  <a href="https://github.com/ali-akhavn-dev/fitland/graphs/commit-activity"><img src="https://img.shields.io/github/commit-activity/m/ali-akhavn-dev/fitland?style=flat-square&logo=github&label=Commits%20%2F%20month" alt="Monthly commit activity" /></a>
-  <a href="https://github.com/ali-akhavn-dev/fitland/commits"><img src="https://img.shields.io/github/last-commit/ali-akhavn-dev/fitland?style=flat-square&logo=github&label=Last%20commit" alt="Last commit date" /></a>
+  <img src="https://img.shields.io/github/issues-pr/ali-akhavn-dev/fitland?style=flat-square&logo=github&label=Pull%20Requests" alt="Open pull requests" />
+  <img src="https://img.shields.io/github/commit-activity/t/ali-akhavn-dev/fitland" alt="commit activity" />
 </p>
 
 </div>
@@ -32,6 +31,7 @@
 
 - [About FitLand](#about-fitland)
 - [Features](#features)
+- [OTP Authentication](#otp-authentication)
 - [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
@@ -40,21 +40,30 @@
 
 ## About FitLand
 
-FitLand is a sports-store frontend with a Persian-language, right-to-left interface. This repository contains the frontend application.
+FitLand is an online store for sports products. This repository contains the React frontend, while the backend is kept in a separate repository.
 
-<br />
+The app brings together product browsing, search, customer accounts, and shopping features. Its code is organized into reusable components and folders for different features, making it easier to maintain and grow the project.
 
 ## Features
 
-FitLand focuses on the key flows of an online sports store:
+The main features include:
 
-- **Authentication:** Sign-up and sign-in using one-time passwords (OTP)
-- **Product discovery:** Search, filtering, sorting, product details, and related products
-- **Shopping:** Shopping cart
-- **Account management:** User panel and address management
-- **Customer feedback:** Read reviews and submit a review
+- **Sign-up and login:** Use a one-time password (OTP)
+- **Products:** Search, filters, sorting, product details, and related products
+- **Shopping cart**
+- **User account:** User panel and address registration
+- **Reviews:** Read and submit product reviews
 
-<br />
+## OTP Authentication
+
+Registration and login with one-time passwords (OTP) are complete:
+
+1. The user enters a phone number and requests a code.
+2. The user enters the code to verify the number.
+3. After verification, existing users can log in and new users can continue with registration.
+4. During registration, the backend checks that the phone number matches the one verified with the code. It rejects any mismatch.
+
+This lets users sign up and log in using their phone number and a one-time code.
 
 ## Screenshots
 
@@ -66,18 +75,18 @@ FitLand focuses on the key flows of an online sports store:
 
 ![FitLand product slider](./docs/screenshots/slider.png)
 
-<br />
-
 ## Tech Stack
 
 ### Core technologies
 
 <p>
-  <img src="https://img.shields.io/badge/React-19.2.8-61DAFB?style=flat-square&logo=react&logoColor=20232A" alt="React 19.2.8" />
-  <img src="https://img.shields.io/badge/Vite-8.2.0-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 8.2.0" />
-  <img src="https://img.shields.io/badge/React_Router-7.18.2-CA4245?style=flat-square&logo=reactrouter&logoColor=white" alt="React Router 7.18.2" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4.3.3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4.3.3" />
-  <img src="https://img.shields.io/badge/JavaScript-ES_Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=222222" alt="JavaScript ES modules" />
+  <img src="https://img.shields.io/badge/javascript-gray?logo=javascript" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/react-gray?logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/vite-gray?logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/react%20router-gray?logo=react-router" alt="React Router" />
+  <img src="https://img.shields.io/badge/tailwindCss-gray?logo=tailwindcss" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/axios-gray?logo=axios" alt="axios" />
+  
 </p>
 
 ### Supporting libraries and tools
@@ -91,8 +100,6 @@ FitLand focuses on the key flows of an online sports store:
 | Sonner                                 | Toast notifications   |
 | Zod                                    | Schema validation     |
 | ESLint                                 | Linting               |
-
-<br />
 
 ## Getting Started
 
@@ -114,8 +121,6 @@ npm run dev
 ```
 
 Vite prints the local development URL in the terminal after startup.
-
-<br />
 
 ## Project Structure
 
