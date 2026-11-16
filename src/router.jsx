@@ -6,6 +6,7 @@ import HomePage from "./pages/Home/HomePage";
 import NotFound from "./pages/NotFound/NotFound";
 import LoginForm from "./features/auth/components/LoginForm";
 import RegisterForm from "./features/auth/components/RegisterForm";
+import ProductsPage from "./pages/Public/Products/ProductsPage";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,11 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, handle: { hasTopbar: true }, element: <HomePage /> },
+      { path: "products", element: <ProductsPage /> },
+      {
+        path: "category/:categorySlug/:subCategorySlug?/:leafSlug?",
+        element: <ProductsPage />,
+      },
       { path: "*", element: <NotFound /> },
     ],
   },
