@@ -1,29 +1,50 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router";
 
 import { Award, Flash, Star1 } from "iconsax-reactjs";
 
-import menus from "@/constants/navmenu";
+import useCategories from "@/features/categories/hooks/useCategories";
+import MegaMenu from "@/features/categories/components/MegaMenu";
 
 function Navbar() {
-  const categories = menus.find((menu) => menu.submenus);
+  const { categories, isLoading } = useCategories();
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const openMegaMenu = (category) => {
+    setIsOpen(true);
+    setActiveCategory(category);
+  };
+
+  const closeMegaMenu = () => {
+    setIsOpen(false);
+    setActiveCategory(null);
+  };
 
   return (
     <nav className="hidden relative lg:flex-between rounded-2xl bg-f9f9f9 text-neutral-black px-10 mt-11.5 font-IRANSansX-Bold text-sm xl:text-base">
       <ul className="flex-ic">
-        {categories.submenus.map((submenu) => (
-          <li
-            key={submenu.id}
-            className="pl-6 py-5 xl:pl-10 hover:text-primary transition-colors"
-          >
-            <NavLink
-              className={({ isActive }) => (isActive ? "text-primary" : "")}
-              to={`/category/${submenu.href}`}
-              preventScrollReset
+        {!isLoading &&
+          categories.length > 0 &&
+          categories.map((category) => (
+            <li
+              key={category._id}
+              className="pl-6 py-5 xl:pl-10 hover:text-primary transition-colors"
+              onMouseEnter={() => openMegaMenu(category)}
+              onMouseLeave={closeMegaMenu}
             >
-              {submenu.label}
-            </NavLink>
-          </li>
-        ))}
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-primary" : "")}
+                to={`/category/${category.slug}`}
+                preventScrollReset
+              >
+                {category.title}
+              </NavLink>
+              {isOpen && category._id === activeCategory._id && (
+                <MegaMenu category={activeCategory} />
+              )}
+            </li>
+          ))}
       </ul>
 
       <div className="flex-ic gap-6 xl:gap-10 *:flex-ic *:gap-1 py-5">

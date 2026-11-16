@@ -12,11 +12,12 @@ import {
 } from "iconsax-reactjs";
 
 import NavmenuItem from "./NavmenuItem";
-import menus from "@/constants/navmenu";
 import { AuthContext } from "@/context/Auth";
+import useCategories from "@/features/categories/hooks/useCategories";
 
 function Navmenu({ onToggle, isOpen }) {
   const { user, isLoading: authIsLoading } = useContext(AuthContext);
+  const { categories, isLoading } = useCategories();
 
   return (
     <div className="lg:hidden text-neutral-black">
@@ -66,9 +67,11 @@ function Navmenu({ onToggle, isOpen }) {
                 خانه
               </Link>
             </li>
-            {menus.map((menu) => (
-              <NavmenuItem key={menu.id} {...menu} />
-            ))}
+            {!isLoading &&
+              categories.length > 0 &&
+              categories.map((category) => (
+                <NavmenuItem key={category._id} {...category} />
+              ))}
             <li onClick={onToggle}>
               <Link
                 to="/products?sort=newest"

@@ -5,7 +5,7 @@ import { ArrowDown2 } from "iconsax-reactjs";
 
 import { BASE_URL_IMAGE } from "@/constants";
 
-function NavmenuItem({ submenus, href, title, icon }) {
+function NavmenuItem({ subCategories, _id, slug, title, icon }) {
   const [isNavItemOpen, setIsNavItemOpen] = useState(false);
 
   const toggleNavItem = () => {
@@ -13,7 +13,7 @@ function NavmenuItem({ submenus, href, title, icon }) {
   };
 
   return (
-    <li onClick={toggleNavItem} className="overflow-hidden">
+    <li key={_id} onClick={toggleNavItem} className="overflow-hidden">
       <div className="flex-between gap-2.5 p-2 rounded-small cursor-pointer">
         <div className="flex-ic gap-2.5">
           <img src={`${BASE_URL_IMAGE}${icon}`} alt="icon" />
@@ -27,14 +27,13 @@ function NavmenuItem({ submenus, href, title, icon }) {
       <ul
         className={`space-y-3 pr-7.5 text-sm ${!isNavItemOpen ? "h-0" : "mt-3"} transition-all`}
       >
-        {submenus &&
-          submenus.map((submenu) => (
-            <li key={submenu.id}>
-              <Link to={`category/${href}/${submenu.href}`}>
-                {submenu.label}
-              </Link>
-            </li>
-          ))}
+        {subCategories.map((subCategory) => (
+          <li key={subCategory._id}>
+            <Link to={`category/${slug}/${subCategory.slug}`}>
+              {subCategory.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </li>
   );

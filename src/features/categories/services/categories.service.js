@@ -1,4 +1,5 @@
-import api from "@/services";
+import api from "@/services/api";
+
 
 const getCategories = async () => {
   const { data } = await api.get("/categories");
