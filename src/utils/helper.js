@@ -15,4 +15,13 @@ const validateSchema = (schema, value, showToast = false) => {
   return true;
 };
 
-export { validateSchema, replaceClass };
+const formatPrice = (value) => {
+  if (!value) return 0;
+  return Number(value).toLocaleString();
+};
+
+const getDiscountedPrice = (price, discount) => {
+  return price - (price * discount) / 100;
+};
+
+export { validateSchema, replaceClass, formatPrice, getDiscountedPrice };
