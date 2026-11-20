@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import useProducts from "@/features/products/hooks/useProducts";
 import ProductList from "@/features/products/components/listing/ProductList";
 import Pagination from "@/components/ui/Pagination/Pagination";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 function ProductsPage() {
   const { leafSlug, subCategorySlug, categorySlug } = useParams();
@@ -21,6 +22,8 @@ function ProductsPage() {
   return (
     <div className="container">
       <div>
+        <Breadcrumb breadcrumb={breadcrumb} />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 lg:mt-10 mb-8">
           <section className={`col-span-2 lg:col-span-full`}>
             <ProductList
