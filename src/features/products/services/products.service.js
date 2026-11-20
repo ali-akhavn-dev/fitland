@@ -1,7 +1,7 @@
 import api from "@/services/api";
 
-const getAllProducts = async (signal) => {
-  const { data } = await api.get(`/products`, { signal });
+const getAllProducts = async (query, signal) => {
+  const { data } = await api.get(`/products?${query}`, { signal });
   return data;
 };
 

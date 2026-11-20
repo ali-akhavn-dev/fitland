@@ -1,8 +1,13 @@
+import { useParams } from "react-router";
+
 import useProducts from "@/features/products/hooks/useProducts";
 import ProductList from "@/features/products/components/listing/ProductList";
 import Pagination from "@/components/ui/Pagination/Pagination";
 
 function ProductsPage() {
+  const { leafSlug, subCategorySlug, categorySlug } = useParams();
+  const finalCategorySlug = leafSlug ?? subCategorySlug ?? categorySlug;
+
   const {
     products,
     facets,
@@ -11,7 +16,7 @@ function ProductsPage() {
     isLoading,
     error,
     breadcrumb,
-  } = useProducts();
+  } = useProducts(finalCategorySlug);
 
   return (
     <div className="container">

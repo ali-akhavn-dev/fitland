@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 
 import { getAllProducts } from "../services/products.service";
+import { createProductsQuery } from "../utils";
 
-function useProducts() {
+function useProducts(categorySlug) {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [facets, setFacets] = useState([]);
@@ -10,6 +12,12 @@ function useProducts() {
   const [priceRange, setPriceRange] = useState({});
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
+
+  const [searchParams] = useSearchParams();
+
+  const query = createProductsQuery(searchParams, categorySlug);
+
+  console.log(query);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -20,10 +28,9 @@ function useProducts() {
       setError(false);
 
       try {
-        const res = await getAllProducts(signal);
+        const res = await getAllProducts(query, signal);
         if (signal.aborted) return;
 
-        console.log(res);
         if (res.success) {
           setProducts(res.data.products);
           setBreadcrumb(res.data.breadcrumb);
@@ -46,7 +53,7 @@ function useProducts() {
     fetchProducts();
 
     return () => controller.abort();
-  }, []);
+  }, [query]);
 
   useEffect(() => {
     const scrollToTop = () => {
