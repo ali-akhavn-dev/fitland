@@ -17,7 +17,7 @@ function useProducts(categorySlug) {
 
   const query = createProductsQuery(searchParams, categorySlug);
 
-  console.log(query);
+  // console.log(query);
 
   useEffect(() => {
     const controller = new AbortController();
