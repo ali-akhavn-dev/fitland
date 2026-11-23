@@ -8,7 +8,6 @@ function useProductQuery() {
   const updateQuery = (changeParams, resetPage = true) => {
     setSearchParams(
       (prevParams) => {
-        console.log(prevParams)
         const params = new URLSearchParams(prevParams);
         changeParams(params);
 
@@ -25,7 +24,7 @@ function useProductQuery() {
   const toggleArrayFilter = (key, value) => {
     updateQuery((params) => {
       const currentValues = params.getAll(key);
-      console.log(currentValues)
+      console.log(currentValues);
 
       const nextValues = currentValues.includes(value)
         ? currentValues.filter((currentValue) => currentValue !== value)

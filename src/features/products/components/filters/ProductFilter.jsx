@@ -14,8 +14,6 @@ function ProductFilter({ priceRange, facets, showButton }) {
     clearFilters,
   } = useProductQuery();
 
-  // console.log(facets);
-
   const [searchParams] = useSearchParams();
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");

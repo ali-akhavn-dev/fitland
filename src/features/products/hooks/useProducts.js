@@ -55,12 +55,13 @@ function useProducts(categorySlug) {
     return () => controller.abort();
   }, [query]);
 
+  
   useEffect(() => {
     const scrollToTop = () => {
       document.getElementById("header")?.scrollIntoView({ behavior: "smooth" });
     };
     scrollToTop();
-  }, []);
+  }, [query]);
 
   return {
     products,
