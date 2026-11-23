@@ -7,6 +7,9 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import { FILTER_KEYS } from "@/features/products/constants";
 import MobileProductFilter from "@/features/products/components/filters/MobileProductFilter";
 import ProductFilter from "@/features/products/components/filters/ProductFilter";
+import { formatPrice } from "@/utils/helper";
+import ProductSort from "@/features/products/components/sorting/ProductSort";
+import MobileProductSort from "./MobileProductSort";
 
 function ProductsPage() {
   const { leafSlug, subCategorySlug, categorySlug } = useParams();
@@ -41,6 +44,8 @@ function ProductsPage() {
             total={pagination?.total}
             showFilterButton={showFilterSections}
           />
+
+          <MobileProductSort showSortButton={showFilterSections} />
         </div>
 
         {showFilterSections && <Breadcrumb breadcrumb={breadcrumb} />}
@@ -57,6 +62,15 @@ function ProductsPage() {
           <section
             className={`col-span-2 ${showFilterSections ? "lg:col-span-3" : "lg:col-span-full"}`}
           >
+            {showFilterSections && (
+              <div className="flex-between mb-6">
+                <ProductSort />
+                <span className="hidden lg:inline-block text-adadad select-none">
+                  {formatPrice(pagination?.total)} کالا
+                </span>
+              </div>
+            )}
+
             <ProductList
               limit={pagination?.limit}
               products={products}
