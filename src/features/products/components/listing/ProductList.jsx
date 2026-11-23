@@ -2,8 +2,10 @@ import { Warning2 } from "iconsax-reactjs";
 
 import ProductCard from "./ProductCard";
 import ProductCardSkelton from "@/components/ui/Skelton/ProductCardSkelton";
+import NoProducts from "../NoProducts";
+import NoFilterResults from "../NoFilterResults";
 
-function ProductList({ products, isLoading, error, limit }) {
+function ProductList({ products, isLoading, error, limit, hasFilter }) {
   if (error) {
     return (
       <div className="flex-center gap-3 text-center mt-10">
@@ -21,6 +23,14 @@ function ProductList({ products, isLoading, error, limit }) {
         ))}
       </div>
     );
+  }
+
+  if (isLoading === false && hasFilter && products.length === 0) {
+    return <NoFilterResults />;
+  }
+
+  if (isLoading === false && !hasFilter && products.length === 0) {
+    return <NoProducts />;
   }
 
   if (!isLoading && !error && products.length > 0) {

@@ -9,7 +9,7 @@ import MobileProductFilter from "@/features/products/components/filters/MobilePr
 import ProductFilter from "@/features/products/components/filters/ProductFilter";
 import { formatPrice } from "@/utils/helper";
 import ProductSort from "@/features/products/components/sorting/ProductSort";
-import MobileProductSort from "./MobileProductSort";
+import MobileProductSort from "@/features/products/components/sorting/MobileProductSort";
 
 function ProductsPage() {
   const { leafSlug, subCategorySlug, categorySlug } = useParams();
@@ -32,7 +32,7 @@ function ProductsPage() {
   };
 
   const hasFilter = areProudctsFilterd();
-  const showFilterSections = !hasFilter || (hasFilter && products.length > 0);
+  const showFilterSections = products.length > 0;
 
   return (
     <div className="container">
