@@ -47,7 +47,7 @@ function MobileProductFilter({ priceRange, facets, total, showFilterButton }) {
 
       {facets.length > 0 && (
         <div
-          className={`${!isOpen ? "translate-y-full" : ""} lg:hidden fixed left-0 right-0 top-0 z-20 bottom-0 bg-white transition-all duration-250`}
+          className={`${!isOpen ? "translate-y-full" : ""} lg:hidden fixed left-0 right-0 top-0 z-20 bottom-0 overflow-auto bg-white transition-all duration-250`}
         >
           <div className="flex-between border-b border-ededed p-5">
             <span className="text-base font-IRANSansX-DemiBold">فیلترها</span>
