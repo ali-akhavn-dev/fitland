@@ -11,7 +11,6 @@ function ProductSort() {
 
   const handleSortProducts = (e) => {
     const clickedSort = e.target.closest("LI").dataset.sort;
-    console.log(e.target.closest("LI"))
     changeSort(clickedSort);
   };
 

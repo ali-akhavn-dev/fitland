@@ -1,12 +1,14 @@
+import { useSearchParams } from "react-router";
+
 import Accordion from "@/components/ui/Accordion/Accordion";
 import AccordionWrapper from "@/components/ui/Accordion/AccordionWrapper";
 import Switch from "@/components/ui/Switch";
-import { useSearchParams } from "react-router";
 import DynamicFilters from "./DynamicFilters";
 import ProductFilterSkelton from "@/components/ui/Skelton/ProductFilterSkelton";
 import useProductQuery from "../../hooks/useProductQuery";
+import PriceRangeSlider from "./PriceRangeSlider";
 
-function ProductFilter({ priceRange, facets, showButton }) {
+function ProductFilter({ priceRange, facets }) {
   const {
     toggleArrayFilter,
     toggleBooleanFilter,
@@ -41,6 +43,20 @@ function ProductFilter({ priceRange, facets, showButton }) {
           </div>
 
           <AccordionWrapper customClass="space-y-4">
+            <Accordion
+              title="قیمت"
+              headerClass="h-10 !text-neutral-black"
+              bodyClass="pt-6"
+            >
+              <PriceRangeSlider
+                min={0}
+                max={priceRange.max ?? 10_000_000}
+                onToggleFilter={togglePriceFilter}
+                minFilter={minPrice && Number(minPrice)}
+                maxFilter={maxPrice && Number(maxPrice)}
+              />
+            </Accordion>
+
             {facets.map((facet) => (
               <Accordion
                 key={facet.slug}

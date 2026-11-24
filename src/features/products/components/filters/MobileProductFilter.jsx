@@ -10,6 +10,7 @@ import Accordion from "@/components/ui/Accordion/Accordion";
 import { formatPrice } from "@/utils/helper";
 import DynamicFilters from "./DynamicFilters";
 import useProductQuery from "../../hooks/useProductQuery";
+import PriceRangeSlider from "./PriceRangeSlider";
 
 function MobileProductFilter({ priceRange, facets, total, showFilterButton }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +80,13 @@ function MobileProductFilter({ priceRange, facets, total, showFilterButton }) {
                 bodyClass="pt-6"
                 hasSeparator
               >
-                {/* <PriceRangeSlider /> */}
+                <PriceRangeSlider
+                  min={0}
+                  max={priceRange.max}
+                  onToggleFilter={togglePriceFilter}
+                  minFilter={minPrice && Number(minPrice)}
+                  maxFilter={maxPrice && Number(maxPrice)}
+                />
               </Accordion>
 
               {facets.map((facet) => (
