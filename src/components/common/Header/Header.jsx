@@ -19,14 +19,14 @@ function Header() {
       <div className="container">
         <div className="flex-between flex-wrap lg:flex-nowrap">
           <button onClick={toggleNavmenu} className="lg:hidden size-6.5">
-            <img src="./svg/menu.svg" alt="menu" />
+            <img src="/svg/menu.svg" alt="menu" />
           </button>
 
           <div>
             <Link to="/">
               <img
                 className="w-27 lg:w-27 xl:w-full"
-                src="./svg/app-logo.svg"
+                src="/svg/app-logo.svg"
                 alt="logo"
               />
             </Link>

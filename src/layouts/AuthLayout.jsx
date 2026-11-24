@@ -48,7 +48,7 @@ function AuthLayout() {
           className={`lg:hidden text-center ${stage === "register" ? "mt-6" : "mt-27"} mb-6`}
         >
           <div className="mb-2">
-            <img src="./svg/app-logo.svg" alt="logo" />
+            <img src="/svg/app-logo.svg" alt="logo" />
           </div>
           <span className="text-xs text-868686">
             فروشگاه لوازم ورزشی فیت‌لند
