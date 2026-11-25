@@ -49,7 +49,10 @@ The app brings together product browsing, search, customer accounts, and shoppin
 The main features include:
 
 - **Sign-up and login:** Use a one-time password (OTP)
-- **Products:** Search, filters, sorting, product details, and related products
+- **Product catalog (implemented):** Browse, filter, and sort products.
+  - **Filters:** Price, discount, stock availability, size, and brand; category-specific options can also include color, fit, material, and more.
+  - **Sorting:** Newest, most viewed, best-selling, highest price, and lowest price.
+- **Product search and details:** Search for products, view product information, and explore related products
 - **Shopping cart**
 - **User account:** User panel and address registration
 - **Reviews:** Read and submit product reviews
@@ -138,7 +141,10 @@ Vite prints the local development URL in the terminal after startup.
 │   │   └── ui/                    # Reusable UI components
 │   ├── constants/
 │   ├── context/
-│   ├── features/                  # Feature modules (auth, cart, products, ...)
+│   ├── features/
+│   │   ├── auth/                  # OTP sign-up and login
+│   │   ├── categories/            # Category features
+│   │   └── products/              # Product listing, filtering, and sorting
 │   ├── hooks/
 │   ├── layouts/
 │   ├── pages/                     # Route-level pages
