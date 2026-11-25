@@ -1,4 +1,9 @@
-const createProductsQuery = (searchParams, categorySlug, search) => {
+const createProductsQuery = ({
+  searchParams,
+  categorySlug,
+  hasDiscount,
+  search,
+}) => {
   const query = new URLSearchParams(searchParams);
 
   const page = query.get("page");
@@ -6,6 +11,10 @@ const createProductsQuery = (searchParams, categorySlug, search) => {
 
   if (categorySlug) {
     query.set("categorySlug", categorySlug);
+  }
+
+  if (hasDiscount) {
+    query.set("hasDiscount", hasDiscount);
   }
 
   if (search) {

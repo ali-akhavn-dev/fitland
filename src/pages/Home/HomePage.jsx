@@ -33,13 +33,16 @@ function HomePage() {
         </div>
       </Banner>
       <ProductSlider
-        bgSliderName="slider-1"
         title="تخفیفات ویژه"
+        type="discount"
+        bgSliderName="slider-1"
         href="/products?hasDiscount=true"
       />
       <ProductSlider
         title="جدید ترین کفش های ورزشی"
+        type="shoes"
         titleClass="font-IRANSansX-Bold"
+        href="/products?search=کفش"
       />
       <Banner to="/category/sports-equipment" bannerName="bike">
         <div className="lg:w-92.5 absolute right-4 top-9.5 md:top-20 xl:top-40 xl:right-37">
@@ -57,11 +60,6 @@ function HomePage() {
           </Button>
         </div>
       </Banner>
-      <ProductSlider
-        title="تخفیفات ویژه"
-        bgSliderName="slider-2"
-        titleClass="font-IRANSansX-Bold"
-      />
       <ProductsShowCase
         photo1="blose-3"
         photo2="blose-4"

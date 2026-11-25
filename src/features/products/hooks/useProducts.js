@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router";
 import { getAllProducts } from "../services/products.service";
 import { createProductsQuery } from "../utils";
 
-function useProducts(categorySlug) {
+function useProducts(categorySlug, queryParameters) {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [facets, setFacets] = useState([]);
@@ -15,9 +15,14 @@ function useProducts(categorySlug) {
 
   const [searchParams] = useSearchParams();
 
-  const query = createProductsQuery(searchParams, categorySlug);
+  const parameters = {
+    searchParams,
+    categorySlug,
+    search: "",
+    ...queryParameters,
+  };
 
-  // console.log(query);
+  const query = createProductsQuery(parameters);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -55,7 +60,6 @@ function useProducts(categorySlug) {
     return () => controller.abort();
   }, [query]);
 
-  
   useEffect(() => {
     const scrollToTop = () => {
       document.getElementById("header")?.scrollIntoView({ behavior: "smooth" });
