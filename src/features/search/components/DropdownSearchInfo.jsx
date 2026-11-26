@@ -33,7 +33,7 @@ function DropdownSearchInfo({
               <li
                 onClick={() => onReplace(term)}
                 key={index}
-                className="w-26 h-[35px] rounded-[10px] bg-ededed"
+                className="w-20 h-8 lg:w-26 lg:h-[35px] rounded-[10px] bg-ededed"
               >
                 <Link className="size-full flex-center">{term}</Link>
               </li>

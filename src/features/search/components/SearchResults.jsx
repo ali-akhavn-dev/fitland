@@ -6,20 +6,20 @@ function SearchResults({ search, results, onCommitSearch, onNavigate }) {
   return (
     <>
       <div className="flex-between gap-4 font-IRANSansX-Medium text-sm text-neutral-black mb-4">
-        <div>
+        <div className="hidden sm:block">
           کالاهای مربوط به <span className="text-primary">{search}</span>
         </div>
         <div
           onClick={onCommitSearch}
           className="flex-between gap-1 cursor-pointer"
         >
-          <span>مشاهده همه نتایج</span>
+          <span className="text-xs lg:text-sm">مشاهده همه نتایج</span>
           <ArrowLeft2 size={16} />
         </div>
       </div>
       
       <div className="search-results overflow-auto" dir="ltr">
-        <div className="h-81 space-y-3 mr-2" dir="rtl">
+        <div className="h-63 lg:h-81 space-y-3 mr-2" dir="rtl">
           {results.map((product) => (
             <div
               key={product._id}

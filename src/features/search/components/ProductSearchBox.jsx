@@ -35,7 +35,7 @@ function ProductSearchBox() {
       <div
         className={`relative z-50 flex-ic w-full lg:w-140 xl:w-159.5 h-10 sm:h-12 mt-4.5 sm:mt-5 lg:mt-0 gap-2 sm:border border-cbcbcb bg-f9f9f9 lg:bg-white ${isOpen ? "rounded-t-medium" : "rounded-medium"} px-4`}
       >
-        <SearchNormal className="shrink-0" color="#FA541C" />
+        <SearchNormal className="shrink-0 size-5 lg:size-6" color="#FA541C" />
         <input
           ref={inputRef}
           onFocus={openDropdown}

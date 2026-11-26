@@ -27,7 +27,7 @@ function DropdownSearchBox({
 
   return (
     <div
-      className={`search-dropdown absolute inset-x-0 ${status === "success" ? "h-[570px] -bottom-[571px] space-y-6" : "h-64 -bottom-[257px] space-y-8"} z-50 overflow-auto rounded-b-medium p-6 pb-10 border-x border-b border-cbcbcb bg-white`}
+      className={`search-dropdown absolute inset-x-0 ${status === "success" ? "h-[514px] -bottom-[515px] lg:h-[570px] lg:-bottom-[571px] space-y-6" : "h-76 -bottom-76 lg:h-64 lg:-bottom-[257px] space-y-8"} z-50 overflow-auto rounded-b-medium p-6 pb-10 border-x border-b border-cbcbcb bg-white`}
     >
       {status === "idle" && (
         <>
@@ -53,7 +53,7 @@ function DropdownSearchBox({
 
       {status === "success" && results.length === 0 && (
         <div className="w-max py-2 px-4 bg-error-1 rounded-small">
-          <p className="text-sm text-error-3">
+          <p className="text-xs lg:text-sm text-error-3">
             متاسفانه نتیجه ای با این عبارت یافت نشد.
           </p>
         </div>
