@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import LoginForm from "./features/auth/components/LoginForm";
 import RegisterForm from "./features/auth/components/RegisterForm";
 import ProductsPage from "./pages/Public/Products/ProductsPage";
+import ProductDetailsPage from "./pages/Public/Products/ProductDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         path: "category/:categorySlug/:subCategorySlug?/:leafSlug?",
         element: <ProductsPage />,
       },
+      { path: "product/:productSlug", element: <ProductDetailsPage /> },
       { path: "*", element: <NotFound /> },
     ],
   },
