@@ -7,6 +7,9 @@ import NavButton from "@/components/ui/Button/NavButton";
 
 function NoProducts() {
   const params = useParams();
+  const href = params.categorySlug
+    ? `/category/${params.categorySlug}`
+    : "/products";
 
   return (
     <div className="flex-center flex-col gap-10">
@@ -18,7 +21,7 @@ function NoProducts() {
       </span>
 
       <NavButton
-        to={`/category/${params.categorySlug}`}
+        to={href}
         text="برگشت به دسته‌بندی"
         className="bg-secondary-400 h-14 lg:h-10! w-full lg:w-auto lg:px-5 font-IRANSansX-Medium lg:font-IRANSansX-Bold text-base!"
       >
