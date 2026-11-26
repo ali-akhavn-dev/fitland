@@ -1,0 +1,9 @@
+const MIN_CHARS = 2;
+
+const DEBOUNCE_TIME = 350;
+
+const RECENT_SEARCHES_KEY = "recent-seaches";
+
+const MAX_RECENT_ITEMS = 5;
+
+export { MIN_CHARS, DEBOUNCE_TIME, RECENT_SEARCHES_KEY, MAX_RECENT_ITEMS };
