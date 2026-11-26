@@ -1,6 +1,6 @@
 const MIN_CHARS = 2;
 
-const DEBOUNCE_TIME = 350;
+const DEBOUNCE_TIME = 380;
 
 const RECENT_SEARCHES_KEY = "recent-seaches";
 

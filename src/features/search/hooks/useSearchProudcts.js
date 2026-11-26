@@ -28,12 +28,13 @@ function useSearchProudcts(inputRef, onCommit = () => {}) {
   const [popularSearches, setPopularSearches] = useState([]);
   const [recentSearches, setRecentSearches] = useState(getRecentSearches);
 
-  const query = createProductsQuery(searchParams, undefined, search);
+  const parameters = { searchParams, search };
+  const query = createProductsQuery(parameters);
 
   const { searchQuery } = useProductQuery();
 
   const handleChangeSearch = (e) => {
-    const searchedValue = e.target.value.trim();
+    const searchedValue = e.target.value;
     setSearch(searchedValue);
   };
 
