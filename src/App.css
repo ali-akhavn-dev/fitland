@@ -206,6 +206,16 @@
     @apply !size-9 bg-secondary-850 text-white;
   }
 
+  
+  /* ----- Product Details Page ----- */
+  .product-thumbnail {
+    @apply size-20 rounded-lg border border-cbcbcb cursor-pointer overflow-hidden opacity-50 transition-opacity;
+  }
+  .swiper-slide-thumb-active .product-thumbnail {
+    @apply !opacity-100 border-primary-700;
+  }
+
+
   /* ----- Footer ----- */
   .footer-item {
     @apply select-none [&>p]:inline-block before:size-1 before:inline-block before:ml-1.5 lg:before:ml-2 before:bg-cbcbcb before:rounded-full;
